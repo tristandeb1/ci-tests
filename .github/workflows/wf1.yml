@@ -1,3 +1,7 @@
+name: The workflow number 1
+on:
+  workflow_dispatch:
+
 jobs:
   job-not-in-a-container:
     runs-on: ubuntu-latest
