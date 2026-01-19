@@ -1,0 +1,12 @@
+jobs:
+  job-not-in-a-container:
+    runs-on: ubuntu-latest
+    steps:
+      - shell: bash
+        run: echo ubuntu not in a container
+  job-in-a-container:
+    runs-on: ubuntu-latest
+    container: debian:latest
+    steps:
+      - shell: bash
+        run: echo debian in a container
