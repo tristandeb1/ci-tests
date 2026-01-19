@@ -1,4 +1,4 @@
-name: The workflow number 1
+name: Workflow 1
 on:
   workflow_dispatch:
 
@@ -6,11 +6,23 @@ jobs:
   job-not-in-a-container:
     runs-on: ubuntu-latest
     steps:
-      - shell: bash
-        run: echo ${{ job.container }}
+      - name: Step 1
+        shell: bash
+        if: ${{ container.id == "" }}
+        run: echo NOT-IN-CONTAINER / EMPTY CONTAINER_ID
+      - name: Step 2
+        shell: bash
+        if: ${{ container.id != "" }}
+        run: echo NOT-IN-CONTAINER / NOT EMPTY CONTAINER_ID
   job-in-a-container:
     runs-on: ubuntu-latest
     container: debian:latest
     steps:
-      - shell: bash
-        run: echo ${{ job.container }}
+      - name: Step 3
+        shell: bash
+        if: ${{ container.id == "" }}
+        run: echo IN-CONTAINER / EMPTY CONTAINER_ID
+      - name: Step 4
+        shell: bash
+        if: ${{ container.id != "" }}
+        run: echo IN-CONTAINER / NOT EMPTY CONTAINER_ID
