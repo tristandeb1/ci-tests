@@ -7,10 +7,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - shell: bash
-        run: echo ${{ job.container.id }}
+        run: echo ${{ job.container }}
   job-in-a-container:
     runs-on: ubuntu-latest
     container: debian:latest
     steps:
       - shell: bash
-        run: echo ${{ job.container.id }}
+        run: echo ${{ job.container }}
