@@ -8,21 +8,33 @@ jobs:
     steps:
       - name: Step 1
         shell: bash
-        if: ${{ container.id == '' }}
-        run: echo NOT-IN-CONTAINER / EMPTY CONTAINER_ID
+        if: ${{ job.container.id == '' }}
+        run: |
+          echo NOT-IN-CONTAINER / EMPTY CONTAINER_ID
+          echo container: ${{ job.container }}
+          echo container ID: ${{ job.container.id }}
       - name: Step 2
         shell: bash
-        if: ${{ container.id != '' }}
-        run: echo NOT-IN-CONTAINER / NOT EMPTY CONTAINER_ID
+        if: ${{ job.container.id != '' }}
+        run: |
+          echo NOT-IN-CONTAINER / NOT EMPTY CONTAINER_ID
+          echo container: ${{ job.container }}
+          echo container ID: ${{ job.container.id }}
   job-in-a-container:
     runs-on: ubuntu-latest
     container: debian:latest
     steps:
       - name: Step 3
         shell: bash
-        if: ${{ container.id == '' }}
-        run: echo IN-CONTAINER / EMPTY CONTAINER_ID
+        if: ${{ job.container.id == '' }}
+        run: |
+          echo IN-CONTAINER / EMPTY CONTAINER_ID
+          echo container: ${{ job.container }}
+          echo container ID: ${{ job.container.id }}
       - name: Step 4
         shell: bash
-        if: ${{ container.id != '' }}
-        run: echo IN-CONTAINER / NOT EMPTY CONTAINER_ID
+        if: ${{ job.container.id != '' }}
+        run: |
+          echo IN-CONTAINER / NOT EMPTY CONTAINER_ID
+          echo container: ${{ job.container }}
+          echo container ID: ${{ job.container.id }}
